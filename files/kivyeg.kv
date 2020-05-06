@@ -1,0 +1,273 @@
+#:import Window kivy.core.window.Window
+WindowManager:
+    FirstWindow:
+    SecondWindow:
+    FourthWindow:
+    ThirdWindow:
+
+<FirstWindow>
+    name : "first"
+    on_enter: root.variableInitialize()
+    
+    FloatLayout:
+        cols:1
+        btn1: btn1
+        btn2: btn2
+        Image:
+            source: 'pic5.jpg'
+            allow_stretch: True
+            size_hint: 1.0, 1.0
+            keep_ratio: False
+        FloatLayout:
+            size: root.width, root.height/2
+
+            
+            
+            Label:
+                markup: True
+                text: "[b][i]What do you want to take, X or O ?[/i][/b]"
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.10, "top":1}
+                font_size: (root.width**2.42 + root.height**2.41) / 14**5.5
+                #color: 0.8,0.1,0.1,1 
+                
+
+            Button:
+                id: btn1
+                size_hint: 0.5,0.13
+                pos_hint: {"x":0.25, "top":0.8}
+                markup: True
+                text: "[b][i]X[/b][/i]"
+                font_size: (root.width**2.1 + root.height**2.1) / 14**4
+                on_press: root.symbol1()
+                on_release: 
+                    app.root.current = "second"
+                    root.manager.transition.direction = "left"
+
+            Button:
+                id : btn2
+                size_hint: 0.5,0.13
+                markup: True
+                pos_hint: {"x":0.25, "top":0.6}
+                text: "[b][i]O[/b][/i]"
+                font_size: (root.width**2.1 + root.height**2.1) / 14**4
+                on_press: root.symbol2()
+                on_release: 
+                    app.root.current = "second"
+                    root.manager.transition.direction = "left"
+            
+                
+<SecondWindow>
+    name : "second"
+    
+    
+    FloatLayout:
+        cols:1
+        btn1: btn1
+        btn2: btn2
+        Image:
+            source: 'pic2.jpg'
+            allow_stretch: True
+            size_hint: 1.0, 1.0
+            keep_ratio: False
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                markup:True
+                text: "[b][i]Want to take first chance?[/b][/i]"
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.10, "top":0.94}
+                font_size: (root.width**2.43 + root.height**2.45) / 14**5.5
+                color: [0.0,0.0,0.0,0.5]
+
+            Button:
+                id: btn1
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0.52, "top":0.62}
+                text: "Yes"
+                font_size: (root.width**2.09 + root.height**2.09) / 14**4
+                on_press: root.firstMove1()
+                on_release: 
+                    app.root.current = "fourth"
+                    root.manager.transition.direction = "left"
+
+            Button:
+                id: btn2
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0.52, "top":0.42}
+                text: "No"
+                font_size: (root.width**2.09 + root.height**2.09) / 14**4
+                on_press: root.firstMove2()
+                on_release: 
+                    app.root.current = "fourth"
+                    root.manager.transition.direction = "left"
+        Button:
+            text:"Back"
+            size_hint: 0.8,0.1
+            pos_hint:{"x":0.1,"top":0.12}
+            font_size: (root.width**2.05 + root.height**2.05) / 14**4
+            on_release: 
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+                    
+                    
+<FourthWindow>
+    name:"fourth"
+    start_label:start_label
+    on_enter: root.StartLabel()
+    
+    FloatLayout:
+        cols:1
+        Image:
+            source: 'pic3.jpg'
+            allow_stretch: True
+            size_hint: 1.0, 1.0
+            keep_ratio: False
+        Label:
+            size_hint: 0.4,0.12
+            pos_hint: {"x":0.22, "top":0.74}
+            font_size: (root.width**2.4 + root.height**2.4) / 14**5.5
+            id:start_label
+            markup:True
+            text:" "
+        Button:
+            text:"Press to Start"
+            size_hint: 0.42,0.12
+            color: [0.0,0.0,0.0,1]
+            pos_hint: {"x":0.072, "top":0.55}
+            font_size:(root.width**2.4 + root.height**2.4) / 14**5.5
+            on_release: 
+                app.root.current = "third"
+                root.manager.transition.direction = "left"
+                
+        Button:
+            text:"Back"
+            size_hint: 0.8,0.1
+            pos_hint:{"x":0.1,"top":0.12}
+            font_size: (root.width**2.05 + root.height**2.05) / 14**4
+            on_release: 
+                app.root.current = "second"
+                root.manager.transition.direction = "right"
+        
+                    
+<ThirdWindow>
+    name: "third"
+    chglabel: chglabel
+    on_enter: root.on_start()
+    
+    FloatLayout:
+        cols : 1
+        Image:
+            source: 'pic4.jpg'
+            allow_stretch: True
+            size_hint: 1.0, 1.0
+            keep_ratio: False
+        Label:
+            id:chglabel
+            text: ""
+            pos_hint: {"x":0.0, "top":1.4}
+            font_size: (root.width**2.1 + root.height**2.1) / 14**4.4
+
+        GridLayout:
+            padding:[0, 170]
+            cols: 3
+            size_hint:0.78,0.78
+            pos_hint: {"x":0.11, "top":0.88}
+            Button:
+                id: btn1
+                text:root.b1
+                font_size:85
+                background_color: root.clr1
+                on_press: 
+                    text:root.b1 if btn1.state == "down" else root.b1
+                on_release:root.label_change1('btn1')
+
+            Button:
+                id: btn2
+                background_color : root.clr2
+                font_size:85
+                text:root.b2
+                on_press: 
+                    text:root.b2 if btn2.state == "down" else root.b2
+                on_release:root.label_change2('btn2')
+
+            Button:
+                id: btn3
+                background_color : root.clr3
+                font_size:85
+                text:root.b3
+                on_press: 
+                    text:root.b3 if btn3.state == "down" else root.b3
+                on_release:root.label_change3('btn3')
+
+            Button:
+                id: btn4
+                background_color : root.clr4
+                font_size:85
+                text:root.b4
+                on_press: 
+                    text:root.b4 if btn4.state == "down" else root.b4
+                on_release:root.label_change4('btn4')
+
+            Button:
+                id: btn5
+                text:root.b5
+                font_size:85
+                background_color : root.clr5
+                on_press: 
+                    text:root.b5 if btn5.state == "down" else root.b5
+                on_release:root.label_change5('btn5')
+
+            Button:
+                id: btn6
+                text:root.b6
+                font_size:85
+                background_color : root.clr6
+                on_press: 
+                    text:root.b6 if btn6.state == "down" else root.b6
+                on_release:root.label_change6('btn6')
+
+            Button:
+                id: btn7
+                text:root.b7
+                font_size:85
+                background_color : root.clr7
+                on_press: 
+                    text:root.b7 if btn7.state == "down" else root.b7
+                on_release:root.label_change7('btn7')
+
+            Button:
+                id: btn8
+                text:root.b8
+                font_size:85
+                background_color : root.clr8
+                on_press: 
+                    text:root.b8 if btn8.state == "down" else root.b8
+                on_release:root.label_change8('btn8')
+
+            Button:
+                id: btn9
+                text:root.b9
+                font_size:85
+                background_color : root.clr9
+                on_press: 
+                    text:root.b9 if btn9.state == "down" else root.b9
+                on_release:root.label_change9('btn9')
+        Button:
+            text:"Start Again"
+            size_hint: 0.8,0.1
+            pos_hint:{"x":0.1,"top":0.11}
+            font_size: (root.width**2.02 + root.height**2.02) / 14**4
+            on_release: 
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+                root.clear()
+        
+            
+                
+
+            
+        
+            
+
