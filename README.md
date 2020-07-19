@@ -19,3 +19,13 @@ See [here](https://kivy.org/doc/stable/guide/packaging-android.html) how to crea
 
 ## Algorithm
 The algorithm used is : [Minimax Algorithm](https://en.wikipedia.org/wiki/Minimax) in game playing.
+
+&nbsp;
+
+## Screenshots
+
+<img src="option1.jpg" width="300" height = "600"/>  \t  <img src="option2.jpg" width="300" height = "600"/>  \t  <img src="option3.jpg" width="300" height = "600"/>
+
+&nbsp;
+
+<img src="start.jpg" width="300" height = "600"/>  \t  <img src="draw.jpg" width="300" height = "600"/>  \t  <img src="lost.jpg" width="300" height = "600"/>
